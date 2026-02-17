@@ -1,0 +1,963 @@
+/* ============================================
+   MBTI Personality Test - Unified Stylesheet
+   ============================================ */
+
+/* --- 1. CSS Custom Properties --- */
+:root {
+    /* Colors */
+    --color-bg: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-text: #1E293B;
+    --color-text-secondary: #64748B;
+    --color-text-muted: #94A3B8;
+    --color-border: #E2E8F0;
+    --color-accent: #6366F1;
+    --color-accent-hover: #4F46E5;
+    --color-accent-light: #EEF2FF;
+    --color-success: #10B981;
+
+    /* Temperament group colors */
+    --color-analyst: #7B68EE;
+    --color-analyst-light: #EDE9FE;
+    --color-diplomat: #10B981;
+    --color-diplomat-light: #D1FAE5;
+    --color-sentinel: #3B82F6;
+    --color-sentinel-light: #DBEAFE;
+    --color-explorer: #F59E0B;
+    --color-explorer-light: #FEF3C7;
+
+    /* Typography */
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    /* Border radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+
+    /* Container */
+    --container-max: 1080px;
+    --container-padding: 1.5rem;
+}
+
+/* --- 2. Reset & Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-accent-hover);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* --- 4. Layout --- */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* --- 5. Navbar --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+}
+
+.navbar-brand:hover {
+    color: var(--color-accent-hover);
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu a {
+    font-family: var(--font-body);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color var(--transition-fast);
+}
+
+.navbar-menu a:hover {
+    color: var(--color-accent);
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+@media (max-width: 640px) {
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--space-md) var(--container-padding);
+        box-shadow: var(--shadow-md);
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+}
+
+/* --- 6. Buttons --- */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-accent);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-hover);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary .arrow {
+    transition: transform var(--transition-fast);
+}
+
+.btn-primary:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* --- 7. Welcome Page --- */
+.welcome-link {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.welcome-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A78BFA 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    animation: shimmer 8s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(5%, 5%); }
+}
+
+.welcome-content {
+    text-align: center;
+    z-index: 1;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.welcome-title {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.25rem;
+}
+
+.welcome-tagline {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.welcome-cta {
+    position: absolute;
+    bottom: 2rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+    .welcome-title {
+        font-size: 3rem;
+    }
+    .welcome-subtitle {
+        font-size: 1.125rem;
+    }
+}
+
+/* --- 8. Index Page (Test Intro) --- */
+.hero-banner {
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+    padding: var(--space-3xl) var(--container-padding);
+    text-align: center;
+    color: #fff;
+    margin-bottom: var(--space-2xl);
+}
+
+.hero-banner h1 {
+    color: #fff;
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-banner p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.intro-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-2xl);
+    max-width: 720px;
+    margin: 0 auto var(--space-3xl);
+}
+
+.intro-card h2 {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.intro-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-xl);
+}
+
+.intro-list li {
+    position: relative;
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-sm);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.intro-note {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-xl);
+}
+
+.intro-card .btn-primary {
+    display: flex;
+    width: 100%;
+}
+
+/* --- 9. MBTI Quiz Page --- */
+.quiz-page-body {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.progress-wrapper {
+    max-width: 640px;
+    margin: var(--space-xl) auto var(--space-lg);
+    padding: 0 var(--container-padding);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-xs);
+}
+
+#progress-text {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    transition: width 0.4s ease;
+    width: 0%;
+}
+
+/* Quiz Question Card */
+.questionbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.flexWidth {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* SVG Checkbox Styles (migrated from svgcheckbx.css) */
+.ac-custom h2 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 0 0 0.75em;
+    color: var(--color-text);
+    line-height: 1.6;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--space-xl) var(--space-xl) var(--space-md);
+    margin: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.ac-custom ul,
+.ac-custom ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--color-surface);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding: 0 var(--space-xl) var(--space-xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.ac-custom li {
+    margin: 0;
+    padding: 1.25em 0;
+    position: relative;
+}
+
+.ac-custom li + li {
+    border-top: 1px solid var(--color-border);
+}
+
+.ac-custom label {
+    display: inline-block;
+    position: relative;
+    font-size: 1.1rem;
+    padding: 0 0 0 50px;
+    vertical-align: top;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1.5;
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"],
+.ac-custom label::before {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 0;
+    margin-top: -15px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"] {
+    opacity: 0;
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 100;
+}
+
+.ac-custom label::before {
+    content: '';
+    border: 2px solid var(--color-border);
+    transition: opacity 0.3s, border-color 0.3s;
+    background: var(--color-bg);
+}
+
+.ac-radio label::before {
+    border-radius: 50%;
+}
+
+.ac-custom input[type="checkbox"]:checked + label,
+.ac-custom input[type="radio"]:checked + label {
+    color: var(--color-accent);
+}
+
+.ac-custom input[type="checkbox"]:checked + label::before,
+.ac-custom input[type="radio"]:checked + label::before {
+    opacity: 0.8;
+    border-color: var(--color-accent);
+}
+
+/* SVG path styles */
+.ac-custom svg {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    left: 5px;
+    pointer-events: none;
+}
+
+.ac-custom svg path {
+    stroke: var(--color-accent);
+    stroke-width: 13px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Circle variant */
+.ac-circle input[type="checkbox"],
+.ac-circle input[type="radio"],
+.ac-circle label::before {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    left: 10px;
+    position: absolute;
+}
+
+.ac-circle label::before {
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-border);
+}
+
+.ac-circle svg {
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    left: -10px;
+}
+
+.ac-circle svg path {
+    stroke-width: 5px;
+}
+
+@media screen and (max-width: 50em) {
+    .ac-custom h2 {
+        font-size: 1.1rem !important;
+    }
+
+    .ac-custom li {
+        font-size: 90%;
+    }
+
+    .flexWidth {
+        width: 100%;
+        padding: 0 var(--space-md);
+    }
+}
+
+/* --- 10. Personalities Grid Page --- */
+.page-title {
+    text-align: center;
+    margin: var(--space-2xl) 0 var(--space-sm);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2xl);
+    font-size: 1rem;
+}
+
+.personality-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding) var(--space-3xl);
+}
+
+.temperament-label {
+    grid-column: 1 / -1;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    padding: var(--space-sm) 0;
+    border-bottom: 2px solid var(--color-border);
+    margin-top: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.temperament-label:first-child {
+    margin-top: 0;
+}
+
+.temperament-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.personality-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.personality-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.personality-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    color: var(--color-text);
+}
+
+.personality-card img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--space-md);
+}
+
+.personality-card .type-code {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+
+.personality-card .type-name {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+/* Temperament-specific top bar colors */
+.personality-card.analyst::before { background: var(--color-analyst); }
+.personality-card.diplomat::before { background: var(--color-diplomat); }
+.personality-card.sentinel::before { background: var(--color-sentinel); }
+.personality-card.explorer::before { background: var(--color-explorer); }
+
+@media (max-width: 768px) {
+    .personality-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .personality-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- 11. Personality Detail Pages (Article) --- */
+.article {
+    position: relative;
+}
+
+.article .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.article .header .title {
+    position: relative;
+    z-index: 10;
+}
+
+.article .header .title h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.article .header .title p.subline {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Temperament header gradients */
+.article .header.analyst { background: linear-gradient(135deg, #7B68EE, #A78BFA); }
+.article .header.diplomat { background: linear-gradient(135deg, #10B981, #34D399); }
+.article .header.sentinel { background: linear-gradient(135deg, #3B82F6, #60A5FA); }
+.article .header.explorer { background: linear-gradient(135deg, #F59E0B, #FBBF24); }
+
+/* Default gradient fallback */
+.article .header {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+}
+
+/* Trigger button */
+button.trigger {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color var(--transition-fast);
+}
+
+button.trigger:hover {
+    color: #fff;
+}
+
+button.trigger svg {
+    width: 28px;
+    height: 28px;
+    animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+button.trigger::after {
+    content: attr(data-info);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Article content */
+.article .content {
+    background: var(--color-bg);
+    position: relative;
+    z-index: 2;
+}
+
+.article .content > div {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--container-padding);
+}
+
+.article .content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.article .content h3:first-child {
+    margin-top: 0;
+}
+
+.article .content p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+}
+
+.article .content strong {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Scroll-reveal transition (works with introduce.js) */
+.intro-effect-jam3 .header {
+    transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.intro-effect-jam3 .header .title h1,
+.intro-effect-jam3 .header .title p.subline {
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.intro-effect-jam3 .content > div {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 0.6s cubic-bezier(0.7, 0, 0.3, 1), transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Revealed state (when .modify is added by introduce.js) */
+.intro-effect-jam3.modify .header {
+    min-height: 180px;
+}
+
+.intro-effect-jam3.modify .header .title h1 {
+    font-size: 2rem;
+}
+
+.intro-effect-jam3.modify .header .title p.subline {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.intro-effect-jam3.modify .content > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-effect-jam3.modify button.trigger {
+    display: none;
+}
+
+/* Responsive for article pages */
+@media (max-width: 640px) {
+    .article .header .title h1 {
+        font-size: 2.5rem;
+    }
+
+    .article .header .title p.subline {
+        font-size: 1rem;
+    }
+
+    .intro-effect-jam3.modify .header {
+        min-height: 120px;
+    }
+
+    .intro-effect-jam3.modify .header .title h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* --- 12. Utilities --- */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-center {
+    text-align: center;
+}

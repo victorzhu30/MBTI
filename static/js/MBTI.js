@@ -1,12 +1,21 @@
 $(document).ready(function () {
 
     var answers = [];
+    var totalQuestions = 93;
+
+    // Update progress bar
+    function updateProgress(current) {
+        var progress = (current / totalQuestions) * 100;
+        $('#progress-fill').css('width', progress + '%');
+        var next = current < totalQuestions ? (current + 1) : totalQuestions;
+        $('#progress-text').text('Question ' + next + ' / ' + totalQuestions);
+    }
 
     //获取题目
     $.ajax({
         type: "get",
         url: `./data/output.txt`,
-        async: false,
+        async: true,
         success: function (data) {
             var data = JSON.parse(data);
             data.forEach((item, index) => {
@@ -37,46 +46,32 @@ $(document).ready(function () {
 
             //等待页面渲染完成后插入 svgcheckbx.js
             $("body").append("<script src='./static/js/svgcheckbx.js'></script>");
+
+            // Bind change event after questions are rendered
+            bindAnswerEvents();
         }
     });
 
+    function bindAnswerEvents() {
+        $("input[name='answer']").on("change", function () {
+            var answer = $(this).val();
+            answers.push(answer);
 
-    $("input[name='answer']").on("change", function () {
-        var answer = $(this).val();
-        answers.push(answer);
+            // Update progress
+            updateProgress(answers.length);
 
-        var form = $(this).parent().parent().parent();
-        var next_form = form.next();
-        setTimeout(function () {
-            form.remove();
-            next_form.css("display", "block");
-        }, 520);
-        if (answers.length == 93) {
-            var page = ObtainingAnswers(answers)
-
-            window.location.href = `./personalities/${page}.html`;
-            //$.ajax({
-            //    type: 'post',
-            //    url: 'http://localhost:64883/common/Update/SubmitMBTI.ashx',
-            //    data: {
-            //        "answers": JSON.stringify(answers),
-            //        "result": page
-            //    },
-            //    async: false,
-            //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-            //        alert("Request Failed!");
-            //    },
-            //    success: function (data) {
-            //        if (data == "true") {
-            //            window.location.href = `./personalities/${page}.html`;
-            //        } else {
-            //            alert(data)
-            //        }
-            //    }
-            //})
-        }
-
-    })
+            var form = $(this).parent().parent().parent();
+            var next_form = form.next();
+            setTimeout(function () {
+                form.remove();
+                next_form.css("display", "block");
+            }, 520);
+            if (answers.length == totalQuestions) {
+                var page = ObtainingAnswers(answers)
+                window.location.href = `./personalities/${page}.html`;
+            }
+        });
+    }
 
     function ObtainingAnswers(answer_list) {
         // 检查答案列表是否为空
@@ -104,4 +99,3 @@ $(document).ready(function () {
         return result
     }
 });
-

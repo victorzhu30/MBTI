@@ -1,45 +1,31 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="MBTI Personality Test">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="MBTI, mbti, personality test">
     <title>Welcome to MBTI-TEST</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/welcome.css" />
-    <script type="text/javascript" src="./static/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="./static/js/jquery.lettering.js"></script>
-    <script src="./static/js/printProjectInfo.js"></script>
+    <link rel="shortcut icon" href="./static/img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
-    <a href="./index.html">
-        <div class="container">
-            <section class="main">
-                <h2 class="cs-text">
-                    <span class="cs-text-cut">Welcome</span>
-                    <span class="cs-text-mid">Biz-MBTI</span>
-                    <span class="cs-text-cut">Welcome</span>
-                </h2>
-            </section>
-            <div class="component">
-                <ul class="grid">
-                    <li class="ot-letter-bottom"><span data-letter="B">B</span></li>
-                    <li class="ot-letter-right"><span data-letter="I">I</span></li>
-                    <li class="ot-letter-top"><span data-letter="Z">Z</span></li>
-                    <li class="ot-letter-left"><span data-letter="-">-</span></li>
-                    <li class="ot-letter-left"><span data-letter="M">M</span></li>
-                    <li class="ot-letter-top"><span data-letter="B">B</span></li>
-                    <li class="ot-letter-bottom"><span data-letter="T">T</span></li>
-                    <li class="ot-letter-right"><span data-letter="I">I</span></li>
-                </ul>
+    <a href="./index.html" class="welcome-link">
+        <div class="welcome-hero">
+            <div class="welcome-content">
+                <h1 class="welcome-title">MBTI</h1>
+                <p class="welcome-subtitle">Biz-MBTI</p>
+                <p class="welcome-tagline">Personality Test</p>
             </div>
+            <p class="welcome-cta">Click to begin</p>
         </div>
     </a>
-    <script>
-        $(document).ready(function () {
-            $(".cs-text-cut").lettering('words');
-        });
-    </script>
 </body>
 
 </html>
